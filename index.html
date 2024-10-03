@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Produtividade CIMAER</title>
+<script src="js/consulta_api_redemet.js"></script>
+<script src="js/scripts.js"></script>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.6.3.min.js" integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="css/styles.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<script src="https://code.jquery.com/jquery-3.6.3.min.js" integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
+<script src=" https://cdn.jsdelivr.net/npm/js-cookie@3.0.1/dist/js.cookie.min.js "></script>
+<script src="//cdn.jsdelivr.net/npm/gasparesganga-jquery-loading-overlay@1.6.0/src/loadingoverlay.min.js"></script>
+</head>
+<body>
+<h1>PRODUTIVIDADE</h1>
+<br>
+<br>
+<div id="mainDiv">
+<form>
+<h5>Consulta à Base de Dados da API OPMET / Redemet</h5>
+<br>
+<div class="form-row" style="display: none">
+<div class="col-md-4 mb-3">
+<label for="apiKey">Chave API Redemet</label>
+<input type="text" class="form-control" id="apiKey" placeholder="Insira a Chave API Aqui" value="7K3fhHbKUkfCL8f9Sv6TwTP7XCkArrVR1ETy2fHt" required>
+</div>
+</div>
+<div class="form-row">
+<div class="col-md-4 mb-3" style="display: none">
+<label for="tipoMsg">Tipo de Mensagem</label>
+<input type="text" class="form-control" id="tipoMsg" placeholder="(METAR, TAF, SIGMET, AIRMET...)" value="avisoad" required>
+</div>
+
+<br>
+<div class="form-group">
+<label for="dataInicial">Data Inicial:</label>
+<input type="date" class="form-control" id="dataInicial" name="dataInicial" required>
+</div>
+<div class="form-group">
+<label for="dataFinal">Data Final:</label>
+<input type="date" class="form-control" id="dataFinal" name="dataFinal" required>
+</div>
+<br>
+<br>
+<div class="col-md-4 mb-3" style="display: none">
+<label for="dataIni">Data Inicial</label>
+<input type="text" class="form-control" id="dataIni" placeholder="yyyymmddhh" value="2015-11-01">
+</div>
+<div class="col-md-4 mb-3" style="display: none">
+<label for="DataFim">Data Final</label>
+<input type="text" class="form-control" id="dataFin" placeholder="yyyymmddhh" value="2024-04-01" aria-describedby="inputGroupPrepend2">
+</div>
+</div>
+<div class="form-group">
+<div class="form-check">
+<input class="form-check-input" type="checkbox" id="janeiro" name="meses" value="janeiro" checked>
+<label class="form-check-label" for="janeiro">Janeiro</label>
+</div>
+<div class="form-check">
+<input class="form-check-input" type="checkbox" id="fevereiro" name="meses" value="fevereiro" checked>
+<label class="form-check-label" for="fevereiro">Fevereiro</label>
+</div>
+<div class="form-check">
+<input class="form-check-input" type="checkbox" id="marco" name="meses" value="marco" checked>
+<label class="form-check-label" for="marco">Março</label>
+</div>
+<div class="form-check">
+<input class="form-check-input" type="checkbox" id="abril" name="meses" value="abril" checked>
+<label class="form-check-label" for="abril">Abril</label>
+</div>
+<div class="form-check">
+<input class="form-check-input" type="checkbox" id="maio" name="meses" value="maio" checked>
+<label class="form-check-label" for="maio">Maio</label>
+</div>
+<div class="form-check">
+<input class="form-check-input" type="checkbox" id="junho" name="meses" value="junho" checked>
+<label class="form-check-label" for="junho">Junho</label>
+</div>
+<div class="form-check">
+<input class="form-check-input" type="checkbox" id="julho" name="meses" value="julho" checked>
+<label class="form-check-label" for="julho">Julho</label>
+</div>
+<div class="form-check">
+<input class="form-check-input" type="checkbox" id="agosto" name="meses" value="agosto" checked>
+<label class="form-check-label" for="agosto">Agosto</label>
+</div>
+<div class="form-check">
+<input class="form-check-input" type="checkbox" id="setembro" name="meses" value="setembro" checked>
+<label class="form-check-label" for="setembro">Setembro</label>
+</div>
+<div class="form-check">
+<input class="form-check-input" type="checkbox" id="outubro" name="meses" value="outubro" checked>
+<label class="form-check-label" for="outubro">Outubro</label>
+</div>
+<div class="form-check">
+<input class="form-check-input" type="checkbox" id="novembro" name="meses" value="novembro" checked>
+<label class="form-check-label" for="novembro">Novembro</label>
+</div>
+<div class="form-check">
+<input class="form-check-input" type="checkbox" id="dezembro" name="meses" value="dezembro" checked>
+<label class="form-check-label" for="dezembro">Dezembro</label>
+</div>
+</div>
+<br>
+<div class="form-row">
+<div class="col-md-6 mb-9">
+<label for="localidades">Localidades</label>
+<input type="text" class="form-control" id="localidades" placeholder="Ex.: SBRJ,SBGL" value="SCRM">
+</div>
+</div>
+<br>
+<div class="form-row">
+<div class="col-md-6 mb-9">
+<input type="checkbox" class="form-check-input" id="exibirMensagens" checked>
+<label>Exibir Mensagens Consultadas</label>
+</div>
+</div>
+<div class="form-row">
+<br>
+<div class="col-md-6 mb-9">
+<button class="btn btn-primary" type="button" onclick="consultaProdutividade(1)">Consultar
+Redemet</button>
+
+</div>
+</div>
+</form>
+</div>
+<br>
+<hr>
+<h4>Resposta:</h4>
+<div id="respostaMETAR">
+</div>
+<div id="respostaTAF">
+</div>
+<div id="respostaGAMET">
+</div>
+<div id="respostaSIGMET">
+</div>
+<div id="respostaAIRMET">
+</div>
+<div id="respostaAVISO">
+</div>
+<div id="respostaAVISOWS">
+</div>
+<script>
+        fillZero = (new API()).fillZero
+        function getDataIni(data) {
+            return `${data.getFullYear()}${fillZero(data.getMonth() + 1)}${fillZero(data.getDate())}01`
+        }
+        function getDataFim(data) {
+            let lastDay = new Date(data.getFullYear(), data.getMonth() + 2, 0)
+            let ano = data.getFullYear()
+            if (data.getMonth() == 11)
+                ano++
+            return `${ano}${fillZero(lastDay.getMonth() + 1)}${fillZero(data.getDate())}00`
+            //console.log (  `${data.getFullYear()}${fillZero(lastDay.getMonth() + 1)}${fillZero(data.getDate())}00`)
+        }
+        $(document).ready(function () {
+
+            //console.log('document ready')
+            $('#mesRef').datepicker({
+                viewMode: 'months',
+                startView: "months",
+                minViewMode: "months",
+                format: 'mm-yyyy'
+            });
+
+            $('#mesRef').on('changeDate', function (ev) {
+                $(this).datepicker('hide');
+
+                let data = ev.date
+                let datai = getDataIni(data)
+                $('#dataIni').val(datai)
+                $('#dataFin').val(getDataFim(data))
+                globalMesRef = data
+                globalDataIni = false
+                console.log(data)
+            });
+        })
+    </script>
+</body>
+</html>
